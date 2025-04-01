@@ -30,22 +30,19 @@ connection.connect((err) => {
 const parseUnstructuredData = (filePath) => {
     const content = fs.readFileSync(filePath, "utf8");
   
-    // Split the file into lines and trim leading/trailing spaces
     const lines = content.split("\n").map((line) => line.trim());
   
     return lines
-      .filter((line) => line.length > 0) // Remove any empty lines
+      .filter((line) => line.length > 0)
       .map((line) => {
-        // Split by any amount of space or tab (handle irregular spaces or tabs)
-        const parts = line.split(/\s+/); // \s+ means split by any sequence of space characters
+        const parts = line.split(/\s+/); 
   
-        // Check if we have enough parts, otherwise, handle with defaults
         return {
-          name: parts[0] || "Nežinomas", // First column
-          position: parts[1] || "Nežinomas",   // Second column
-          salary: parts[2] ? parseFloat(parts[2]) : 0, // Third column, assuming salary is a number
-          hire_date: parts[3] || "1970-01-01", // Fourth column, assuming hire_date is the fourth field
-          department: parts[4] || "Nežinomas", // Fifth column, assuming department is the fifth field
+          name: parts[0] || "Nežinomas", // 
+          position: parts[1] || "Nežinomas",   // 
+          salary: parts[2] ? parseFloat(parts[2]) : 0, 
+          hire_date: parts[3] || "1970-01-01", 
+          department: parts[4] || "Nežinomas",
         };
       });
   };
